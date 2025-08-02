@@ -15,13 +15,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review, onDelete, onEdit }) => 
   const generalScore = review.generalScore || 
     (review.aroma + review.acidity + review.body + review.sweetness + review.aftertaste + review.balance) / 6;
 
-  const getRatingColor = (rating: number) => {
-    if (rating >= 4.5) return '#28a745';
-    if (rating >= 4) return '#17a2b8';
-    if (rating >= 3.5) return '#ffc107';
-    if (rating >= 3) return '#fd7e14';
-    return '#dc3545';
-  };
+  // Removed unused getRatingColor function since we're using star ratings now
 
   return (
     <div className="review-card">

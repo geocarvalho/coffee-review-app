@@ -20,7 +20,7 @@ const StarRating: React.FC<StarRatingProps> = ({
     }
   };
 
-  const handleStarHover = (starValue: number) => {
+  const handleStarHover = (_starValue: number) => {
     if (!readonly) {
       // Optional: Add hover effects here
     }
