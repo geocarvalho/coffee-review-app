@@ -63,7 +63,11 @@ const App: React.FC = () => {
       balance: reviews.reduce((sum, r) => sum + r.balance, 0) / totalReviews,
     };
 
-    const overallAvg = Object.values(avgRatings).reduce((sum, val) => sum + val, 0) / 6;
+    // Calculate overall average using general scores if available, otherwise calculate from individual ratings
+    const overallAvg = reviews.reduce((sum, r) => {
+      const generalScore = r.generalScore || (r.aroma + r.acidity + r.body + r.sweetness + r.aftertaste + r.balance) / 6;
+      return sum + generalScore;
+    }, 0) / totalReviews;
 
     const topRoasters = reviews
       .reduce((acc, review) => {
@@ -147,7 +151,7 @@ const App: React.FC = () => {
               <div style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#8B4513' }}>
                 {stats.overallAvg.toFixed(1)}/5
               </div>
-              <div>Avg Rating</div>
+              <div>General Score Avg</div>
             </div>
           </div>
 

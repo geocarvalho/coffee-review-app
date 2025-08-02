@@ -11,9 +11,9 @@ interface ReviewCardProps {
 }
 
 const ReviewCard: React.FC<ReviewCardProps> = ({ review, onDelete, onEdit }) => {
-  const averageRating = Math.round(
-    (review.aroma + review.acidity + review.body + review.sweetness + review.aftertaste + review.balance) / 6
-  );
+  // Use the stored general score or calculate it if not available (for backward compatibility)
+  const generalScore = review.generalScore || 
+    (review.aroma + review.acidity + review.body + review.sweetness + review.aftertaste + review.balance) / 6;
 
   const getRatingColor = (rating: number) => {
     if (rating >= 4.5) return '#28a745';
@@ -102,9 +102,12 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review, onDelete, onEdit }) => 
         border: '1px solid #e0e0e0'
       }}>
         <div style={{ fontWeight: 'bold', color: '#8B4513', marginBottom: '0.5rem' }}>
-          Average Rating
+          General Score
         </div>
-        <StarRating rating={averageRating} readonly size={24} />
+        <StarRating rating={generalScore} readonly size={24} />
+        <div style={{ marginTop: '0.5rem', fontSize: '0.9rem', color: '#666' }}>
+          {generalScore.toFixed(1)} / 5
+        </div>
       </div>
 
       {review.overallComment && (

@@ -56,9 +56,14 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onSubmit, onCancel }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Calculate general score (mean of all ratings) with decimal precision
+    const generalScore = (formData.aroma + formData.acidity + formData.body + 
+                         formData.sweetness + formData.aftertaste + formData.balance) / 6;
+    
     const newReview: CoffeeReview = {
       id: Date.now().toString(),
       ...formData,
+      generalScore,
       imageUrl: imageUrl || undefined,
       createdAt: new Date().toISOString(),
     };
@@ -158,6 +163,30 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onSubmit, onCancel }) => {
           <RatingInput label="Sweetness" field="sweetness" value={formData.sweetness} />
           <RatingInput label="Aftertaste" field="aftertaste" value={formData.aftertaste} />
           <RatingInput label="Balance" field="balance" value={formData.balance} />
+        </div>
+        
+        {/* General Score Display */}
+        <div style={{ 
+          marginTop: '1rem', 
+          padding: '1rem', 
+          background: '#f8f9fa', 
+          borderRadius: '10px',
+          border: '1px solid #e0e0e0',
+          textAlign: 'center'
+        }}>
+          <div style={{ fontWeight: 'bold', color: '#8B4513', marginBottom: '0.5rem' }}>
+            General Score (Auto-calculated)
+          </div>
+          <StarRating 
+            rating={(formData.aroma + formData.acidity + formData.body + 
+                    formData.sweetness + formData.aftertaste + formData.balance) / 6} 
+            readonly 
+            size={24} 
+          />
+          <div style={{ marginTop: '0.5rem', fontSize: '0.9rem', color: '#666' }}>
+            {((formData.aroma + formData.acidity + formData.body + 
+               formData.sweetness + formData.aftertaste + formData.balance) / 6).toFixed(1)} / 5
+          </div>
         </div>
       </div>
 

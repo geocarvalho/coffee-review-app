@@ -14,6 +14,7 @@ A beautiful and intuitive web application for tracking and rating your coffee ex
 ### 📝 Review Management
 - **Comprehensive Coffee Tracking**: Record bean name, origin, roaster, roast level, and brewing method
 - **Star Rating System**: Rate aroma, acidity, body, sweetness, aftertaste, and balance with intuitive star ratings (⭐ to ⭐⭐⭐⭐⭐)
+- **General Score**: Automatic calculation of the mean score from all individual ratings
 - **Photo Support**: Add photos to your reviews for visual reference
 - **Rich Comments**: Write detailed notes about your coffee experience
 
@@ -86,9 +87,10 @@ The built files will be in the `dist` directory, ready for deployment.
    - **Sweetness**: The natural sweetness
    - **Aftertaste**: The lingering flavors
    - **Balance**: How well all elements work together
-5. Add your overall comments
-6. Optionally upload a photo
-7. Click **"Save Review"**
+5. View the **General Score** (automatically calculated mean of all ratings)
+6. Add your overall comments
+7. Optionally upload a photo
+8. Click **"Save Review"**
 
 ### Managing Your Reviews
 
@@ -102,7 +104,8 @@ The built files will be in the `dist` directory, ready for deployment.
 
 - Click **"Show Stats"** to see your coffee analytics
 - View your average ratings across all categories
-- See your most-reviewed roasters
+- See your general score averages
+- Discover your most-reviewed roasters
 - Track your coffee journey progress
 
 ## Data Structure
@@ -123,6 +126,7 @@ interface CoffeeReview {
   sweetness: number;    // 1-5 stars
   aftertaste: number;   // 1-5 stars
   balance: number;      // 1-5 stars
+  generalScore?: number; // Auto-calculated mean of all ratings
   overallComment: string;
   imageUrl?: string;
   createdAt: string;

@@ -11,6 +11,7 @@ export interface CoffeeReview {
   sweetness: number;
   aftertaste: number;
   balance: number;
+  generalScore?: number; // Calculated mean of all ratings
   overallComment: string;
   imageUrl?: string;
   createdAt: string;

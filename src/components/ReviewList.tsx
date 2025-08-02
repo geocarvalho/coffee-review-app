@@ -43,8 +43,8 @@ const ReviewList: React.FC<ReviewListProps> = ({ reviews, onDelete, onEdit }) =>
           comparison = a.beanName.localeCompare(b.beanName);
           break;
         case 'rating':
-          const avgA = (a.aroma + a.acidity + a.body + a.sweetness + a.aftertaste + a.balance) / 6;
-          const avgB = (b.aroma + b.acidity + b.body + b.sweetness + b.aftertaste + b.balance) / 6;
+          const avgA = a.generalScore || (a.aroma + a.acidity + a.body + a.sweetness + a.aftertaste + a.balance) / 6;
+          const avgB = b.generalScore || (b.aroma + b.acidity + b.body + b.sweetness + b.aftertaste + b.balance) / 6;
           comparison = avgA - avgB;
           break;
       }
