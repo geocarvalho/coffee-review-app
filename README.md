@@ -1,13 +1,13 @@
 # ☕ Coffee Review App
 
-[![CI](https://github.com/your-username/coffee-review-app/workflows/CI/badge.svg)](https://github.com/your-username/coffee-review-app/actions)
-[![Deploy](https://github.com/your-username/coffee-review-app/workflows/Deploy%20to%20GitHub%20Pages/badge.svg)](https://github.com/your-username/coffee-review-app/actions)
+[![CI](https://github.com/geocarvalho/coffee-review-app/workflows/CI/badge.svg)](https://github.com/geocarvalho/coffee-review-app/actions)
+[![Deploy](https://github.com/geocarvalho/coffee-review-app/workflows/Deploy%20to%20GitHub%20Pages/badge.svg)](https://github.com/geocarvalho/coffee-review-app/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
 A beautiful and intuitive web application for tracking and rating your coffee experiences. Built with React, TypeScript, and modern web technologies.
 
-🌐 **Live Demo**: [https://your-username.github.io/coffee-review-app](https://your-username.github.io/coffee-review-app)
+🌐 **Live Demo**: [https://geocarvalho.github.io/coffee-review-app](https://geocarvalho.github.io/coffee-review-app)
 
 ## Features
 
@@ -45,7 +45,7 @@ A beautiful and intuitive web application for tracking and rating your coffee ex
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/coffee-review-app.git
+   git clone https://github.com/geocarvalho/coffee-review-app.git
    cd coffee-review-app
    ```
 
@@ -182,11 +182,11 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 
 ### 🐛 Bug Reports
 
-Found a bug? Please [open an issue](https://github.com/your-username/coffee-review-app/issues/new?template=bug_report.md) and we'll fix it!
+Found a bug? Please [open an issue](https://github.com/geocarvalho/coffee-review-app/issues/new?template=bug_report.md) and we'll fix it!
 
 ### 💡 Feature Requests
 
-Have an idea for a new feature? [Let us know](https://github.com/your-username/coffee-review-app/issues/new?template=feature_request.md)!
+Have an idea for a new feature? [Let us know](https://github.com/geocarvalho/coffee-review-app/issues/new?template=feature_request.md)!
 
 ## 📄 License
 
@@ -194,10 +194,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🆘 Support
 
-- 📖 [Documentation](https://github.com/your-username/coffee-review-app#readme)
-- 🐛 [Bug Reports](https://github.com/your-username/coffee-review-app/issues)
-- 💡 [Feature Requests](https://github.com/your-username/coffee-review-app/issues)
-- 💬 [Discussions](https://github.com/your-username/coffee-review-app/discussions)
+- 📖 [Documentation](https://github.com/geocarvalho/coffee-review-app#readme)
+- 🐛 [Bug Reports](https://github.com/geocarvalho/coffee-review-app/issues)
+- 💡 [Feature Requests](https://github.com/geocarvalho/coffee-review-app/issues)
+- 💬 [Discussions](https://github.com/geocarvalho/coffee-review-app/discussions)
 
 ## 🙏 Acknowledgments
 
@@ -209,7 +209,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## ⭐ Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=your-username/coffee-review-app&type=Date)](https://star-history.com/#your-username/coffee-review-app&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=geocarvalho/coffee-review-app&type=Date)](https://star-history.com/#geocarvalho/coffee-review-app&Date)
 
 ---
 
