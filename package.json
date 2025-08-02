@@ -1,7 +1,7 @@
 {
   "name": "coffee-review-app",
   "version": "1.0.0",
-  "description": "A coffee review and rating application",
+  "description": "A beautiful and intuitive web application for tracking and rating your coffee experiences",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
