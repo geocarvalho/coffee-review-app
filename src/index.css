@@ -117,12 +117,14 @@ body {
   font-size: 1rem;
   transition: border-color 0.3s ease;
   background: white;
+  color: #333;
 }
 
 .form-control:focus {
   outline: none;
   border-color: #8B4513;
   box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+  color: #333;
 }
 
 .rating-group {
@@ -140,6 +142,16 @@ body {
   background: #f8f9fa;
   border-radius: 8px;
   border: 1px solid #e0e0e0;
+}
+
+/* Ensure all form elements have proper text color */
+input, textarea, select {
+  color: #333 !important;
+  background: white !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #999 !important;
 }
 
 .review-card {
