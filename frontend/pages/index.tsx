@@ -95,16 +95,9 @@ export default function BrewLogFeed() {
   }, [openMenuId]);
 
   const fetchReviews = async () => {
-    try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/reviews`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch reviews');
-      }
-      const data = await response.json();
-      setReviews(data);
-    } catch (err) {
-      // If API is not available, show sample data
-      console.log('API not available, showing sample data');
+    // If no API URL is configured, show demo data immediately
+    if (!process.env.NEXT_PUBLIC_API_URL) {
+      console.log('No API URL configured, showing demo data');
       setReviews([
         {
           id: '1',
@@ -156,14 +149,34 @@ export default function BrewLogFeed() {
         }
       ]);
       setError(null);
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reviews`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch reviews');
+      }
+      const data = await response.json();
+      setReviews(data);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setLoading(false);
     }
   };
 
   const handleDeleteReview = async (id: string) => {
+    // In demo mode, just remove from local state
+    if (!process.env.NEXT_PUBLIC_API_URL) {
+      setReviews(reviews.filter(review => review.id !== id));
+      setOpenMenuId(null);
+      return;
+    }
+
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/reviews/${id}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reviews/${id}`, {
         method: 'DELETE',
       });
       if (response.ok) {
@@ -242,8 +255,27 @@ export default function BrewLogFeed() {
   };
 
   const handleLike = async (reviewId: string) => {
+    // In demo mode, just update local state
+    if (!process.env.NEXT_PUBLIC_API_URL) {
+      setReviews(reviews.map(review => {
+        if (review.id === reviewId) {
+          const isLiked = review.likes?.includes('george') || false;
+          const newLikes = isLiked 
+            ? (review.likes || []).filter(id => id !== 'george')
+            : [...(review.likes || []), 'george'];
+          return {
+            ...review,
+            likes: newLikes,
+            likeCount: newLikes.length
+          };
+        }
+        return review;
+      }));
+      return;
+    }
+
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/reviews/${reviewId}/like`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reviews/${reviewId}/like`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
