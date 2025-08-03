@@ -399,12 +399,7 @@ export default function BrewLogFeed() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-orange-50">
-      {/* Demo Notice */}
-      <div className="bg-blue-50 border-b border-blue-200 px-4 py-2 text-center">
-        <p className="text-sm text-blue-800">
-          🚀 <strong>Demo Mode:</strong> Showing sample data. Connect a backend API to see real data.
-        </p>
-      </div>
+
       
       {/* Header */}
       <header className="bg-white/80 backdrop-blur-md border-b border-amber-100 sticky top-0 z-50">
