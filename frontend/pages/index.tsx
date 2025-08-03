@@ -77,25 +77,9 @@ export default function BrewLogFeed() {
   const [editingComment, setEditingComment] = useState<{reviewId: string, commentId: string, text: string} | null>(null);
   const [editCommentText, setEditCommentText] = useState('');
 
+  // Load data immediately
   useEffect(() => {
-    fetchReviews();
-  }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (openMenuId && !(event.target as Element).closest('.menu-container')) {
-        setOpenMenuId(null);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [openMenuId]);
-
-  const fetchReviews = async () => {
-    // Always show demo data for now since we're on GitHub Pages
+    // Load demo data immediately for GitHub Pages
     console.log('Loading demo data for GitHub Pages');
     setReviews([
       {
@@ -149,7 +133,22 @@ export default function BrewLogFeed() {
     ]);
     setError(null);
     setLoading(false);
-  };
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (openMenuId && !(event.target as Element).closest('.menu-container')) {
+        setOpenMenuId(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [openMenuId]);
+
+
 
   const handleDeleteReview = async (id: string) => {
     // Demo mode - just remove from local state
@@ -396,7 +395,7 @@ export default function BrewLogFeed() {
           <div className="text-center text-red-600">
             Error: {error}
             <br />
-            <Button onClick={fetchReviews} className="mt-4">
+            <Button onClick={() => window.location.reload()} className="mt-4">
               Try Again
             </Button>
           </div>
