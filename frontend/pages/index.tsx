@@ -55,8 +55,57 @@ const MethodTag = ({ method }: { method: string }) => {
 };
 
 export default function BrewLogFeed() {
-  const [reviews, setReviews] = useState<Review[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [reviews, setReviews] = useState<Review[]>([
+    {
+      id: '1',
+      name: 'George Carvalho',
+      date: 'Dec 15, 2:30 PM',
+      title: 'Ethiopian Yirgacheffe',
+      roaster: 'Stumptown Coffee',
+      origin: 'Ethiopia',
+      method: 'pour over',
+      ratio: '22g : 350g',
+      time: '3:45',
+      tags: ['bright', 'floral', 'fruity', 'acidic'],
+      notes: 'Absolutely stunning cup! The floral notes are incredible, with a bright acidity that dances on the tongue. The fruity undertones remind me of blueberries and jasmine. This is exactly what I look for in a great Ethiopian coffee.',
+      rating: 5,
+      likes: ['george'],
+      likeCount: 1
+    },
+    {
+      id: '2',
+      name: 'George Carvalho',
+      date: 'Dec 14, 10:15 AM',
+      title: 'Colombian Supremo',
+      roaster: 'Blue Bottle Coffee',
+      origin: 'Colombia',
+      method: 'chemex',
+      ratio: '30g : 500g',
+      time: '4:20',
+      tags: ['chocolate', 'nutty', 'smooth', 'balanced'],
+      notes: 'Rich and smooth with beautiful chocolate notes. The nutty undertones add complexity, and the finish is clean and balanced. Perfect for a morning brew.',
+      rating: 4,
+      likes: [],
+      likeCount: 0
+    },
+    {
+      id: '3',
+      name: 'George Carvalho',
+      date: 'Dec 13, 3:45 PM',
+      title: 'Guatemala Antigua',
+      roaster: 'Intelligentsia Coffee',
+      origin: 'Guatemala',
+      method: 'v60',
+      ratio: '18g : 300g',
+      time: '2:55',
+      tags: ['caramel', 'spice', 'medium-body', 'sweet'],
+      notes: 'Delicious caramel sweetness with subtle spice notes. Medium body with a smooth finish. The V60 really brings out the complexity of this coffee.',
+      rating: 4,
+      likes: ['george'],
+      likeCount: 1
+    }
+  ]);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
   const [editingReview, setEditingReview] = useState<Review | null>(null);
@@ -77,63 +126,7 @@ export default function BrewLogFeed() {
   const [editingComment, setEditingComment] = useState<{reviewId: string, commentId: string, text: string} | null>(null);
   const [editCommentText, setEditCommentText] = useState('');
 
-  // Load data immediately
-  useEffect(() => {
-    // Load demo data immediately for GitHub Pages
-    console.log('Loading demo data for GitHub Pages');
-    setReviews([
-      {
-        id: '1',
-        name: 'George Carvalho',
-        date: 'Dec 15, 2:30 PM',
-        title: 'Ethiopian Yirgacheffe',
-        roaster: 'Stumptown Coffee',
-        origin: 'Ethiopia',
-        method: 'pour over',
-        ratio: '22g : 350g',
-        time: '3:45',
-        tags: ['bright', 'floral', 'fruity', 'acidic'],
-        notes: 'Absolutely stunning cup! The floral notes are incredible, with a bright acidity that dances on the tongue. The fruity undertones remind me of blueberries and jasmine. This is exactly what I look for in a great Ethiopian coffee.',
-        rating: 5,
-        likes: ['george'],
-        likeCount: 1
-      },
-      {
-        id: '2',
-        name: 'George Carvalho',
-        date: 'Dec 14, 10:15 AM',
-        title: 'Colombian Supremo',
-        roaster: 'Blue Bottle Coffee',
-        origin: 'Colombia',
-        method: 'chemex',
-        ratio: '30g : 500g',
-        time: '4:20',
-        tags: ['chocolate', 'nutty', 'smooth', 'balanced'],
-        notes: 'Rich and smooth with beautiful chocolate notes. The nutty undertones add complexity, and the finish is clean and balanced. Perfect for a morning brew.',
-        rating: 4,
-        likes: [],
-        likeCount: 0
-      },
-      {
-        id: '3',
-        name: 'George Carvalho',
-        date: 'Dec 13, 3:45 PM',
-        title: 'Guatemala Antigua',
-        roaster: 'Intelligentsia Coffee',
-        origin: 'Guatemala',
-        method: 'v60',
-        ratio: '18g : 300g',
-        time: '2:55',
-        tags: ['caramel', 'spice', 'medium-body', 'sweet'],
-        notes: 'Delicious caramel sweetness with subtle spice notes. Medium body with a smooth finish. The V60 really brings out the complexity of this coffee.',
-        rating: 4,
-        likes: ['george'],
-        likeCount: 1
-      }
-    ]);
-    setError(null);
-    setLoading(false);
-  }, []);
+
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
