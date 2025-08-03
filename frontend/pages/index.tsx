@@ -496,20 +496,68 @@ export default function BrewLogFeed() {
               No coffee reviews yet. Be the first to share your brew!
             </div>
           ) : (
-            <div className="space-y-6">
+            <div className="space-y-6" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               {reviews.map((review) => (
-                <Card key={review.id} className="rounded-lg border text-card-foreground shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300 bg-white/70 backdrop-blur-sm border-amber-100">
-                  <div className="flex flex-col space-y-1.5 p-6 pb-3">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <span className="relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border-2 border-amber-200">
-                          <span className="flex h-full w-full items-center justify-center rounded-full bg-muted bg-gradient-to-br from-amber-400 to-orange-500 text-white font-medium">
+                <Card key={review.id} className="rounded-lg border text-card-foreground shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300 bg-white/70 backdrop-blur-sm border-amber-100" style={{
+                  borderRadius: '0.5rem',
+                  border: '1px solid rgb(254 243 199)',
+                  boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+                  overflow: 'hidden',
+                  backgroundColor: 'rgba(255, 255, 255, 0.7)',
+                  backdropFilter: 'blur(4px)',
+                  transition: 'all 0.3s'
+                }}>
+                  <div className="flex flex-col space-y-1.5 p-6 pb-3" style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0.375rem',
+                    padding: '1.5rem',
+                    paddingBottom: '0.75rem'
+                  }}>
+                    <div className="flex items-center justify-between" style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between'
+                    }}>
+                      <div className="flex items-center gap-3" style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.75rem'
+                      }}>
+                        <span className="relative flex shrink-0 overflow-hidden rounded-full h-10 w-10 border-2 border-amber-200" style={{
+                          position: 'relative',
+                          display: 'flex',
+                          flexShrink: '0',
+                          overflow: 'hidden',
+                          borderRadius: '9999px',
+                          height: '2.5rem',
+                          width: '2.5rem',
+                          border: '2px solid rgb(253 230 138)'
+                        }}>
+                          <span className="flex h-full w-full items-center justify-center rounded-full bg-muted bg-gradient-to-br from-amber-400 to-orange-500 text-white font-medium" style={{
+                            display: 'flex',
+                            height: '100%',
+                            width: '100%',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            borderRadius: '9999px',
+                            background: 'linear-gradient(to bottom right, #fbbf24, #f97316)',
+                            color: 'white',
+                            fontWeight: '500'
+                          }}>
                             {review.name.charAt(0)}
                           </span>
                         </span>
                         <div>
-                          <p className="font-semibold text-gray-900">{review.name}</p>
-                          <p className="text-sm text-gray-500">{review.date}</p>
+                          <p className="font-semibold text-gray-900" style={{
+                            fontWeight: '600',
+                            color: 'rgb(17 24 39)'
+                          }}>{review.name}</p>
+                          <p className="text-sm text-gray-500" style={{
+                            fontSize: '0.875rem',
+                            lineHeight: '1.25rem',
+                            color: 'rgb(107 114 128)'
+                          }}>{review.date}</p>
                         </div>
                       </div>
                       <div className="relative menu-container">
