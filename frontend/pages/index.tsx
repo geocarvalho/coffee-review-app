@@ -406,7 +406,14 @@ export default function BrewLogFeed() {
 
       
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-amber-100 sticky top-0 z-50">
+      <header className="bg-white/80 backdrop-blur-md border-b border-amber-100 sticky top-0 z-50" style={{
+        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+        backdropFilter: 'blur(12px)',
+        borderBottom: '1px solid rgb(254 243 199)',
+        position: 'sticky',
+        top: '0',
+        zIndex: '50'
+      }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <a className="flex items-center gap-3 group" href="#">
@@ -461,11 +468,27 @@ export default function BrewLogFeed() {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1">
-        <div className="max-w-2xl mx-auto px-4 py-6 pb-20">
-          <div className="mb-8">
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">Good morning, George!</h1>
-            <p className="text-gray-600">Discover what the coffee community is brewing today</p>
+      <main className="flex-1" style={{ flex: '1 1 0%' }}>
+        <div className="max-w-2xl mx-auto px-4 py-6 pb-20" style={{
+          maxWidth: '42rem',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          paddingLeft: '1rem',
+          paddingRight: '1rem',
+          paddingTop: '1.5rem',
+          paddingBottom: '5rem'
+        }}>
+          <div className="mb-8" style={{ marginBottom: '2rem' }}>
+            <h1 className="text-2xl font-bold text-gray-900 mb-2" style={{
+              fontSize: '1.5rem',
+              lineHeight: '2rem',
+              fontWeight: '700',
+              color: 'rgb(17 24 39)',
+              marginBottom: '0.5rem'
+            }}>Good morning, George!</h1>
+            <p className="text-gray-600" style={{
+              color: 'rgb(75 85 99)'
+            }}>Discover what the coffee community is brewing today</p>
           </div>
           
           {reviews.length === 0 ? (
