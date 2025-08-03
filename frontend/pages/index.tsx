@@ -398,7 +398,7 @@ export default function BrewLogFeed() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-orange-50">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-orange-50" style={{minHeight: '100vh', background: 'linear-gradient(to bottom right, #fffbeb, #ffffff, #fff7ed)'}}>
 
       
       {/* Header */}
