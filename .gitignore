@@ -4,12 +4,12 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
 
-# Build outputs
-dist/
+# Production builds
+.next/
+out/
 build/
-*.tsbuildinfo
+dist/
 
 # Environment variables
 .env
@@ -84,6 +84,11 @@ jspm_packages/
 
 # Nuxt.js build / generate output
 .nuxt
+dist
+
+# Gatsby files
+.cache/
+public
 
 # Storybook build outputs
 .out
@@ -91,4 +96,36 @@ jspm_packages/
 
 # Temporary folders
 tmp/
-temp/ 
+temp/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Local development
+*.local
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Backup files
+*.bak
+*.backup
+
+# Archive files
+*.zip
+*.tar.gz
+*.rar
+
+# Test files
+test-results/
+playwright-report/
+test-results.xml 

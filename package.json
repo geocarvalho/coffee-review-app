@@ -1,30 +1,58 @@
 {
-  "name": "coffee-review-app",
+  "name": "brewlog-coffee-community",
   "version": "1.0.0",
-  "description": "A beautiful and intuitive web application for tracking and rating your coffee experiences",
-  "main": "index.js",
+  "description": "A full-stack coffee review and community application",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd frontend && npm start",
+    "build": "npm run build:frontend",
+    "build:frontend": "cd frontend && npm run build",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "clean": "rm -rf node_modules backend/node_modules frontend/node_modules",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:backend": "cd backend && npm test",
+    "test:frontend": "cd frontend && npm test",
+    "lint": "npm run lint:backend && npm run lint:frontend",
+    "lint:backend": "cd backend && npm run lint",
+    "lint:frontend": "cd frontend && npm run lint",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "prepare": "husky install"
   },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "lucide-react": "^0.294.0",
-    "date-fns": "^2.30.0"
+  "keywords": [
+    "coffee",
+    "reviews",
+    "community",
+    "nextjs",
+    "express",
+    "typescript",
+    "tailwindcss"
+  ],
+  "author": "BrewLog Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/brewlog-coffee-community.git"
   },
+  "bugs": {
+    "url": "https://github.com/yourusername/brewlog-coffee-community/issues"
+  },
+  "homepage": "https://github.com/yourusername/brewlog-coffee-community#readme",
   "devDependencies": {
-    "@types/react": "^18.2.43",
-    "@types/react-dom": "^18.2.17",
-    "@typescript-eslint/eslint-plugin": "^6.14.0",
-    "@typescript-eslint/parser": "^6.14.0",
-    "@vitejs/plugin-react": "^4.2.1",
-    "eslint": "^8.55.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.5",
-    "typescript": "^5.2.2",
-    "vite": "^5.0.8"
+    "concurrently": "^8.2.2",
+    "husky": "^8.0.3",
+    "prettier": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
   }
 } 
