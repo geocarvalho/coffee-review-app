@@ -1,38 +1,45 @@
-name: Deploy
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [ main ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
     
-    - name: Use Node.js
+    - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '18.x'
         cache: 'npm'
     
-    - name: Install dependencies
+    - name: Install frontend dependencies
       run: |
-        cd backend && npm ci
-        cd ../frontend && npm ci
+        cd frontend
+        npm install --ignore-scripts --no-audit --no-fund
     
     - name: Build frontend
       run: |
         cd frontend
         npm run build
+      env:
+        NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL || 'https://your-backend-url.com' }}
+        NEXT_TELEMETRY_DISABLED: 1
+        NODE_ENV: production
     
-    - name: Deploy to production
-      run: |
-        echo "Deployment would happen here"
-        echo "This is a placeholder for actual deployment configuration"
-      # Add your deployment configuration here
-      # Examples:
-      # - Deploy to Vercel, Netlify, or similar
-      # - Deploy backend to Heroku, Railway, or similar
-      # - Deploy to your own servers 
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./frontend/out
+        force_orphan: true 

@@ -31,17 +31,17 @@ jobs:
         cache: 'npm'
     
     - name: Install root dependencies
-      run: npm ci --ignore-scripts
+      run: npm ci --ignore-scripts --no-audit --no-fund
     
     - name: Install backend dependencies
       run: |
         cd backend
-        npm ci --ignore-scripts
+        npm ci --ignore-scripts --no-audit --no-fund
     
     - name: Install frontend dependencies
       run: |
         cd frontend
-        npm ci --ignore-scripts
+        npm ci --ignore-scripts --no-audit --no-fund
     
     - name: Run backend tests
       run: |
@@ -95,7 +95,7 @@ jobs:
     - name: Install frontend dependencies
       run: |
         cd frontend
-        npm ci --ignore-scripts --no-optional --no-workspaces
+        npm ci --ignore-scripts --no-audit --no-fund --no-optional --no-workspaces
     
     - name: Build frontend for GitHub Pages
       run: |
