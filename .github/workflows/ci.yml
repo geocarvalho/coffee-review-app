@@ -83,24 +83,26 @@ jobs:
         node-version: '18.x'
         cache: 'npm'
     
-    - name: Clear npm cache
-      run: npm cache clean --force
-    
-    - name: Install dependencies
+    - name: Setup frontend environment
       run: |
         cd frontend
-        npm ci --ignore-scripts --no-optional
-    
-    - name: Clear Next.js cache
-      run: |
-        cd frontend
+        # Remove workspace-related files
+        rm -f .npmrc
         rm -rf .next
         rm -rf node_modules/.cache
+        rm -rf node_modules/@next
+    
+    - name: Install frontend dependencies
+      run: |
+        cd frontend
+        npm ci --ignore-scripts --no-optional --no-workspaces
     
     - name: Build frontend for GitHub Pages
       run: |
         cd frontend
-        npm run build
+        export NEXT_TELEMETRY_DISABLED=1
+        export NODE_ENV=production
+        npx next build
       env:
         NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL || 'https://your-backend-url.com' }}
         NEXT_TELEMETRY_DISABLED: 1
