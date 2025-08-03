@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --coffee-primary: #8B4513;
+  --coffee-secondary: #D2691E;
+  --coffee-accent: #F4A460;
+  --coffee-cream: #FFF8DC;
+  --coffee-dark: #654321;
+}
+
+body {
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+} 

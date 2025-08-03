@@ -1,218 +1,193 @@
-# ☕ Coffee Review App
+# BrewLog - Coffee Community App
 
-[![CI](https://github.com/geocarvalho/coffee-review-app/workflows/CI/badge.svg)](https://github.com/geocarvalho/coffee-review-app/actions)
-[![Deploy](https://github.com/geocarvalho/coffee-review-app/workflows/Deploy%20to%20GitHub%20Pages/badge.svg)](https://github.com/geocarvalho/coffee-review-app/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+A full-stack coffee review and community application with a modern React/Next.js frontend and Express.js backend.
 
-A beautiful and intuitive web application for tracking and rating your coffee experiences. Built with React, TypeScript, and modern web technologies.
+## 🚀 Features
 
-🌐 **Live Demo**: [https://geocarvalho.github.io/coffee-review-app](https://geocarvalho.github.io/coffee-review-app)
+### Core Functionality
+- **Coffee Reviews Feed** - View and interact with coffee reviews
+- **Add New Reviews** - Log your coffee brewing experiences
+- **Shop Reviews** - Review coffee shops and cafes
+- **Discover Section** - Explore trending coffees, roasters, origins, and brewing methods
+- **User Profiles** - Personal profile with statistics and activity history
 
-## Features
+### Social Features
+- **Like/Unlike Reviews** - Show appreciation for coffee reviews
+- **Comments System** - Add comments to reviews with edit/delete functionality
+- **Share Reviews** - Share coffee reviews via native sharing or clipboard
+- **Real-time Updates** - All interactions update immediately
 
-### 📝 Review Management
-- **Comprehensive Coffee Tracking**: Record bean name, origin, roaster, roast level, and brewing method
-- **Star Rating System**: Rate aroma, acidity, body, sweetness, aftertaste, and balance with intuitive star ratings (⭐ to ⭐⭐⭐⭐⭐)
-- **General Score**: Automatic calculation of the mean score from all individual ratings
-- **Photo Support**: Add photos to your reviews for visual reference
-- **Rich Comments**: Write detailed notes about your coffee experience
+### User Experience
+- **Responsive Design** - Works perfectly on mobile and desktop
+- **Modern UI** - Beautiful interface built with Tailwind CSS
+- **Interactive Elements** - Smooth animations and transitions
+- **Edit & Delete** - Full CRUD operations for reviews and comments
 
-### 🔍 Search & Filter
-- **Smart Search**: Search across bean names, roasters, and origins
-- **Advanced Filtering**: Filter by roaster and origin
-- **Multiple Sort Options**: Sort by date, bean name, or average rating
-- **Flexible Sorting**: Ascending or descending order
+## 📁 Project Structure
 
-### 📊 Statistics Dashboard
-- **Review Analytics**: Track total reviews, unique roasters, and origins
-- **Average Ratings**: See your average scores across all rating categories
-- **Top Roasters**: Discover your most-reviewed roasters
-- **Visual Insights**: Color-coded ratings for quick assessment
+```
+coffee_app/
+├── backend/                 # Express.js API server
+│   ├── index.js            # Main server file with all endpoints
+│   ├── package.json        # Backend dependencies
+│   └── package-lock.json   # Dependency lock file
+├── frontend/               # Next.js React application
+│   ├── pages/              # Next.js pages (Feed, Log Brew, Log Visit, Discover, Profile)
+│   ├── components/         # Reusable React components
+│   │   ├── ui/            # UI components (Button, Card, Avatar)
+│   │   └── FloatingActionButton.tsx
+│   ├── lib/               # Utility functions
+│   ├── styles/            # Global CSS and Tailwind styles
+│   ├── package.json       # Frontend dependencies
+│   └── package-lock.json  # Dependency lock file
+├── start-servers.sh       # Script to start both servers
+├── stop-servers.sh        # Script to stop all servers
+├── README.md              # This file
+└── .gitignore            # Git ignore rules
+```
 
-### 💾 Data Persistence
-- **Local Storage**: All data is saved locally in your browser
-- **No Account Required**: Start using immediately without registration
-- **Data Export**: Easy to backup and restore your reviews
-
-## Getting Started
+## 🛠️ Getting Started
 
 ### Prerequisites
-- Node.js (version 16 or higher)
-- npm or yarn package manager
+- Node.js (v16 or higher)
+- npm or yarn
 
-### Installation
+### Quick Start
 
-1. **Clone the repository**
+1. **Clone the repository:**
    ```bash
-   git clone https://github.com/geocarvalho/coffee-review-app.git
-   cd coffee-review-app
+   git clone <repository-url>
+   cd coffee_app
    ```
 
-2. **Install dependencies**
+2. **Start both servers with one command:**
    ```bash
-   npm install
+   ./start-servers.sh
    ```
 
-3. **Start the development server**
-   ```bash
-   npm run dev
-   ```
+3. **Open your browser:**
+   - Frontend: http://localhost:3000
+   - Backend API: http://localhost:4000
 
-4. **Open your browser**
-   Navigate to `http://localhost:5173` to start using the app
+### Manual Setup
 
-### Building for Production
-
+#### Backend Setup
 ```bash
+cd backend
+npm install
+npm start
+```
+
+#### Frontend Setup
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+## 📡 API Endpoints
+
+### Reviews
+- `GET /reviews` - Get all coffee reviews
+- `POST /reviews` - Create a new coffee review
+- `PUT /reviews/:id` - Update a specific review
+- `DELETE /reviews/:id` - Delete a specific review
+
+### Social Features
+- `POST /reviews/:id/like` - Like/unlike a review
+- `POST /reviews/:id/comments` - Add a comment to a review
+- `GET /reviews/:id/comments` - Get all comments for a review
+- `PUT /reviews/:reviewId/comments/:commentId` - Edit a comment
+- `DELETE /reviews/:reviewId/comments/:commentId` - Delete a comment
+
+## 🎨 Pages & Features
+
+### Feed Page (`/`)
+- View all coffee reviews
+- Like, comment, and share reviews
+- Edit and delete your own reviews
+- Responsive design with mobile navigation
+
+### Log Brew Page (`/log-brew`)
+- Comprehensive form for logging coffee brews
+- Fields for coffee details, brewing method, tasting notes
+- Form validation and submission
+
+### Log Visit Page (`/log-visit`)
+- Review coffee shops and cafes
+- Upload photos and add detailed reviews
+- Rate your experience
+
+### Discover Page (`/discover`)
+- **Trending Tab** - Popular coffees and brewing methods
+- **Roasters Tab** - Top coffee roasters with ratings
+- **Origins Tab** - Coffee origins and regions
+- **Methods Tab** - Brewing methods with ratings
+
+### Profile Page (`/profile`)
+- User profile with statistics
+- **Recent Brews Tab** - Your coffee reviews
+- **Shop Reviews Tab** - Your cafe reviews
+- **Favorites Tab** - Saved favorites (coming soon)
+- **Statistics Tab** - Coffee journey analytics
+
+## 🛠️ Technologies Used
+
+### Backend
+- **Express.js** - Web framework
+- **CORS** - Cross-origin resource sharing
+- **Body Parser** - Request body parsing
+- **UUID** - Unique identifier generation
+
+### Frontend
+- **Next.js** - React framework
+- **React** - UI library
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Utility-first CSS framework
+- **Lucide React** - Beautiful icons
+- **Radix UI** - Accessible UI components
+
+## 🚀 Development
+
+### Development Mode
+```bash
+# Backend with auto-restart
+cd backend
+npm run dev
+
+# Frontend with hot reload
+cd frontend
+npm run dev
+```
+
+### Production Build
+```bash
+# Backend
+cd backend
+npm start
+
+# Frontend
+cd frontend
 npm run build
+npm start
 ```
 
-The built files will be in the `dist` directory, ready for deployment.
+## 📱 Mobile Support
 
-## Usage Guide
-
-### Adding a New Review
-
-1. Click the **"Add New Review"** button
-2. Fill in the required fields:
-   - **Bean Name**: The name of the coffee bean
-   - **Origin**: Country or region where the coffee is from
-   - **Roaster**: The company that roasted the coffee
-3. Select the **Roast Level** and **Brewing Method**
-4. Rate each category with stars (⭐ to ⭐⭐⭐⭐⭐):
-   - **Aroma**: The smell of the coffee
-   - **Acidity**: The brightness and liveliness
-   - **Body**: The weight and texture in your mouth
-   - **Sweetness**: The natural sweetness
-   - **Aftertaste**: The lingering flavors
-   - **Balance**: How well all elements work together
-5. View the **General Score** (automatically calculated mean of all ratings)
-6. Add your overall comments
-7. Optionally upload a photo
-8. Click **"Save Review"**
-
-### Managing Your Reviews
-
-- **Edit**: Click the edit icon on any review card
-- **Delete**: Click the trash icon (with confirmation)
-- **Search**: Use the search bar to find specific reviews
-- **Filter**: Use dropdown menus to filter by roaster or origin
-- **Sort**: Choose how to sort your reviews
-
-### Viewing Statistics
-
-- Click **"Show Stats"** to see your coffee analytics
-- View your average ratings across all categories
-- See your general score averages
-- Discover your most-reviewed roasters
-- Track your coffee journey progress
-
-## Data Structure
-
-Each coffee review includes:
-
-```typescript
-interface CoffeeReview {
-  id: string;
-  beanName: string;
-  origin: string;
-  roaster: string;
-  roastLevel: string;
-  brewingMethod: string;
-  aroma: number;        // 1-5 stars
-  acidity: number;      // 1-5 stars
-  body: number;         // 1-5 stars
-  sweetness: number;    // 1-5 stars
-  aftertaste: number;   // 1-5 stars
-  balance: number;      // 1-5 stars
-  generalScore?: number; // Auto-calculated mean of all ratings
-  overallComment: string;
-  imageUrl?: string;
-  createdAt: string;
-}
-```
-
-## Supported Brewing Methods
-
-- V60
-- AeroPress
-- Espresso
-- French Press
-- Chemex
-- Kalita Wave
-- Moka Pot
-- Pour Over
-- Cold Brew
-- Other
-
-## Roast Levels
-
-- Light
-- Medium-Light
-- Medium
-- Medium-Dark
-- Dark
-
-## Technology Stack
-
-- **Frontend**: React 18 with TypeScript
-- **Build Tool**: Vite
-- **Styling**: CSS3 with modern design patterns
-- **Icons**: Lucide React
-- **Date Handling**: date-fns
-- **Storage**: Local Storage API
-
-## Browser Support
-
-- Chrome (recommended)
-- Firefox
-- Safari
-- Edge
+The application is fully responsive and optimized for mobile devices with:
+- Touch-friendly interface
+- Mobile navigation bar
+- Responsive layouts
+- Native sharing support
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
-
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### 🐛 Bug Reports
-
-Found a bug? Please [open an issue](https://github.com/geocarvalho/coffee-review-app/issues/new?template=bug_report.md) and we'll fix it!
-
-### 💡 Feature Requests
-
-Have an idea for a new feature? [Let us know](https://github.com/geocarvalho/coffee-review-app/issues/new?template=feature_request.md)!
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🆘 Support
-
-- 📖 [Documentation](https://github.com/geocarvalho/coffee-review-app#readme)
-- 🐛 [Bug Reports](https://github.com/geocarvalho/coffee-review-app/issues)
-- 💡 [Feature Requests](https://github.com/geocarvalho/coffee-review-app/issues)
-- 💬 [Discussions](https://github.com/geocarvalho/coffee-review-app/discussions)
-
-## 🙏 Acknowledgments
-
-- [React](https://reactjs.org/) - The web framework used
-- [TypeScript](https://www.typescriptlang.org/) - Type safety
-- [Vite](https://vitejs.dev/) - Build tool
-- [Lucide React](https://lucide.dev/) - Beautiful icons
-- [date-fns](https://date-fns.org/) - Date utilities
-
-## ⭐ Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=geocarvalho/coffee-review-app&type=Date)](https://star-history.com/#geocarvalho/coffee-review-app&Date)
-
----
-
-**Happy coffee tasting! ☕✨**
-
-If you find this project helpful, please consider giving it a ⭐ on GitHub! # Updated Sat Aug  2 00:36:36 PDT 2025
+This project is open source and available under the [MIT License](LICENSE). 
