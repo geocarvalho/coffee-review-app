@@ -7,7 +7,15 @@ const { v4: uuidv4 } = require("uuid");
 const app = express();
 const port = 4000;
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'https://localhost:3000',
+    /^https:\/\/.*\.github\.io$/,
+    process.env.FRONTEND_URL
+  ].filter(Boolean),
+  credentials: true
+}));
 app.use(bodyParser.json());
 
 let reviews = [
@@ -87,6 +95,10 @@ let reviews = [
     rating: 5,
   }
 ];
+
+app.get("/health", (req, res) => {
+  res.json({ status: "ok", timestamp: new Date().toISOString() });
+});
 
 app.get("/reviews", (req, res) => {
   res.json(reviews);

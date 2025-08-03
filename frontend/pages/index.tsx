@@ -96,7 +96,7 @@ export default function BrewLogFeed() {
 
   const fetchReviews = async () => {
     try {
-      const response = await fetch('http://localhost:4000/reviews');
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/reviews`);
       if (!response.ok) {
         throw new Error('Failed to fetch reviews');
       }
@@ -111,7 +111,7 @@ export default function BrewLogFeed() {
 
   const handleDeleteReview = async (id: string) => {
     try {
-      const response = await fetch(`http://localhost:4000/reviews/${id}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/reviews/${id}`, {
         method: 'DELETE',
       });
       if (response.ok) {
@@ -143,7 +143,7 @@ export default function BrewLogFeed() {
     if (!editingReview) return;
     
     try {
-      const response = await fetch(`http://localhost:4000/reviews/${editingReview.id}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/reviews/${editingReview.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -191,7 +191,7 @@ export default function BrewLogFeed() {
 
   const handleLike = async (reviewId: string) => {
     try {
-      const response = await fetch(`http://localhost:4000/reviews/${reviewId}/like`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/reviews/${reviewId}/like`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -216,7 +216,7 @@ export default function BrewLogFeed() {
     if (!commentText.trim()) return;
     
     try {
-      const response = await fetch(`http://localhost:4000/reviews/${reviewId}/comments`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/reviews/${reviewId}/comments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -245,7 +245,7 @@ export default function BrewLogFeed() {
     if (comments[reviewId]) return; // Already loaded
     
     try {
-      const response = await fetch(`http://localhost:4000/reviews/${reviewId}/comments`);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/reviews/${reviewId}/comments`);
       if (response.ok) {
         const reviewComments = await response.json();
         setComments(prev => ({
@@ -291,7 +291,7 @@ export default function BrewLogFeed() {
     if (!editingComment || !editCommentText.trim()) return;
     
     try {
-      const response = await fetch(`http://localhost:4000/reviews/${editingComment.reviewId}/comments/${editingComment.commentId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/reviews/${editingComment.reviewId}/comments/${editingComment.commentId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -322,7 +322,7 @@ export default function BrewLogFeed() {
     if (!confirm('Are you sure you want to delete this comment?')) return;
     
     try {
-      const response = await fetch(`http://localhost:4000/reviews/${reviewId}/comments/${commentId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/reviews/${reviewId}/comments/${commentId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
