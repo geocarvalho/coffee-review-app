@@ -95,97 +95,66 @@ export default function BrewLogFeed() {
   }, [openMenuId]);
 
   const fetchReviews = async () => {
-    // If no API URL is configured, show demo data immediately
-    if (!process.env.NEXT_PUBLIC_API_URL) {
-      console.log('No API URL configured, showing demo data');
-      setReviews([
-        {
-          id: '1',
-          name: 'George Carvalho',
-          date: 'Dec 15, 2:30 PM',
-          title: 'Ethiopian Yirgacheffe',
-          roaster: 'Stumptown Coffee',
-          origin: 'Ethiopia',
-          method: 'pour over',
-          ratio: '22g : 350g',
-          time: '3:45',
-          tags: ['bright', 'floral', 'fruity', 'acidic'],
-          notes: 'Absolutely stunning cup! The floral notes are incredible, with a bright acidity that dances on the tongue. The fruity undertones remind me of blueberries and jasmine. This is exactly what I look for in a great Ethiopian coffee.',
-          rating: 5,
-          likes: ['george'],
-          likeCount: 1
-        },
-        {
-          id: '2',
-          name: 'George Carvalho',
-          date: 'Dec 14, 10:15 AM',
-          title: 'Colombian Supremo',
-          roaster: 'Blue Bottle Coffee',
-          origin: 'Colombia',
-          method: 'chemex',
-          ratio: '30g : 500g',
-          time: '4:20',
-          tags: ['chocolate', 'nutty', 'smooth', 'balanced'],
-          notes: 'Rich and smooth with beautiful chocolate notes. The nutty undertones add complexity, and the finish is clean and balanced. Perfect for a morning brew.',
-          rating: 4,
-          likes: [],
-          likeCount: 0
-        },
-        {
-          id: '3',
-          name: 'George Carvalho',
-          date: 'Dec 13, 3:45 PM',
-          title: 'Guatemala Antigua',
-          roaster: 'Intelligentsia Coffee',
-          origin: 'Guatemala',
-          method: 'v60',
-          ratio: '18g : 300g',
-          time: '2:55',
-          tags: ['caramel', 'spice', 'medium-body', 'sweet'],
-          notes: 'Delicious caramel sweetness with subtle spice notes. Medium body with a smooth finish. The V60 really brings out the complexity of this coffee.',
-          rating: 4,
-          likes: ['george'],
-          likeCount: 1
-        }
-      ]);
-      setError(null);
-      setLoading(false);
-      return;
-    }
-
-    try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reviews`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch reviews');
+    // Always show demo data for now since we're on GitHub Pages
+    console.log('Loading demo data for GitHub Pages');
+    setReviews([
+      {
+        id: '1',
+        name: 'George Carvalho',
+        date: 'Dec 15, 2:30 PM',
+        title: 'Ethiopian Yirgacheffe',
+        roaster: 'Stumptown Coffee',
+        origin: 'Ethiopia',
+        method: 'pour over',
+        ratio: '22g : 350g',
+        time: '3:45',
+        tags: ['bright', 'floral', 'fruity', 'acidic'],
+        notes: 'Absolutely stunning cup! The floral notes are incredible, with a bright acidity that dances on the tongue. The fruity undertones remind me of blueberries and jasmine. This is exactly what I look for in a great Ethiopian coffee.',
+        rating: 5,
+        likes: ['george'],
+        likeCount: 1
+      },
+      {
+        id: '2',
+        name: 'George Carvalho',
+        date: 'Dec 14, 10:15 AM',
+        title: 'Colombian Supremo',
+        roaster: 'Blue Bottle Coffee',
+        origin: 'Colombia',
+        method: 'chemex',
+        ratio: '30g : 500g',
+        time: '4:20',
+        tags: ['chocolate', 'nutty', 'smooth', 'balanced'],
+        notes: 'Rich and smooth with beautiful chocolate notes. The nutty undertones add complexity, and the finish is clean and balanced. Perfect for a morning brew.',
+        rating: 4,
+        likes: [],
+        likeCount: 0
+      },
+      {
+        id: '3',
+        name: 'George Carvalho',
+        date: 'Dec 13, 3:45 PM',
+        title: 'Guatemala Antigua',
+        roaster: 'Intelligentsia Coffee',
+        origin: 'Guatemala',
+        method: 'v60',
+        ratio: '18g : 300g',
+        time: '2:55',
+        tags: ['caramel', 'spice', 'medium-body', 'sweet'],
+        notes: 'Delicious caramel sweetness with subtle spice notes. Medium body with a smooth finish. The V60 really brings out the complexity of this coffee.',
+        rating: 4,
+        likes: ['george'],
+        likeCount: 1
       }
-      const data = await response.json();
-      setReviews(data);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
-    } finally {
-      setLoading(false);
-    }
+    ]);
+    setError(null);
+    setLoading(false);
   };
 
   const handleDeleteReview = async (id: string) => {
-    // In demo mode, just remove from local state
-    if (!process.env.NEXT_PUBLIC_API_URL) {
-      setReviews(reviews.filter(review => review.id !== id));
-      setOpenMenuId(null);
-      return;
-    }
-
-    try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reviews/${id}`, {
-        method: 'DELETE',
-      });
-      if (response.ok) {
-        setReviews(reviews.filter(review => review.id !== id));
-        setOpenMenuId(null);
-      }
-    } catch (err) {
-      console.error('Error deleting review:', err);
-    }
+    // Demo mode - just remove from local state
+    setReviews(reviews.filter(review => review.id !== id));
+    setOpenMenuId(null);
   };
 
   const handleEditReview = (review: Review) => {
@@ -255,45 +224,21 @@ export default function BrewLogFeed() {
   };
 
   const handleLike = async (reviewId: string) => {
-    // In demo mode, just update local state
-    if (!process.env.NEXT_PUBLIC_API_URL) {
-      setReviews(reviews.map(review => {
-        if (review.id === reviewId) {
-          const isLiked = review.likes?.includes('george') || false;
-          const newLikes = isLiked 
-            ? (review.likes || []).filter(id => id !== 'george')
-            : [...(review.likes || []), 'george'];
-          return {
-            ...review,
-            likes: newLikes,
-            likeCount: newLikes.length
-          };
-        }
-        return review;
-      }));
-      return;
-    }
-
-    try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reviews/${reviewId}/like`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ userId: 'george' }),
-      });
-      
-      if (response.ok) {
-        const { likes, likeCount } = await response.json();
-        setReviews(reviews.map(review => 
-          review.id === reviewId 
-            ? { ...review, likes, likeCount }
-            : review
-        ));
+    // Demo mode - just update local state
+    setReviews(reviews.map(review => {
+      if (review.id === reviewId) {
+        const isLiked = review.likes?.includes('george') || false;
+        const newLikes = isLiked 
+          ? (review.likes || []).filter(id => id !== 'george')
+          : [...(review.likes || []), 'george'];
+        return {
+          ...review,
+          likes: newLikes,
+          likeCount: newLikes.length
+        };
       }
-    } catch (err) {
-      console.error('Error liking review:', err);
-    }
+      return review;
+    }));
   };
 
   const handleComment = async (reviewId: string) => {
@@ -463,13 +408,11 @@ export default function BrewLogFeed() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-orange-50">
       {/* Demo Notice */}
-      {!process.env.NEXT_PUBLIC_API_URL && (
-        <div className="bg-blue-50 border-b border-blue-200 px-4 py-2 text-center">
-          <p className="text-sm text-blue-800">
-            🚀 <strong>Demo Mode:</strong> Showing sample data. Connect a backend API to see real data.
-          </p>
-        </div>
-      )}
+      <div className="bg-blue-50 border-b border-blue-200 px-4 py-2 text-center">
+        <p className="text-sm text-blue-800">
+          🚀 <strong>Demo Mode:</strong> Showing sample data. Connect a backend API to see real data.
+        </p>
+      </div>
       
       {/* Header */}
       <header className="bg-white/80 backdrop-blur-md border-b border-amber-100 sticky top-0 z-50">
